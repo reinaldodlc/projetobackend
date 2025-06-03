@@ -1,9 +1,20 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    description: str
+    price: float
 
 app = FastAPI()
 
-items = [{"item_name": "Arroz"}, {"item_name": "Feijão"}, {"item_name": "Macarrão"}]
+items = []
 
 @app.get("/items/")
 async def read_item():
     return items
+
+@app.post("/items/")
+async def create_item(item: Item):
+    items.append(item)
+    return item
