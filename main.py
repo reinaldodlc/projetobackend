@@ -18,3 +18,7 @@ async def read_item():
 async def create_item(item: Item):
     items.append(item)
     return item
+
+@app.get("/items/{item_id}")
+async def read_one_item(item_id: int):
+    return items[item_id]
