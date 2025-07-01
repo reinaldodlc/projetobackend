@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -22,3 +23,9 @@ async def create_item(item: Item):
 @app.get("/items/{item_id}")
 async def read_one_item(item_id: int):
     return items[item_id]
+
+@app.put("/items/{item_id}")
+async def update_item(item_id: int, item: Item):
+    items[item_id] = item
+    return item
+
