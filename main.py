@@ -27,3 +27,7 @@ async def read_one_item(item_id: int):
 async def update_item(item_id: int, item: Item):
     items[item_id] = item
     return item
+
+@app.delete("/items/{item_id}")
+async def delete_item(item_id: int):
+    del items[item_id]
